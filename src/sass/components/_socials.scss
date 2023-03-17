@@ -1,0 +1,17 @@
+.socials {
+  display: flex;
+  gap: 32px;
+  &__icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+    transition: color 250ms ease-in-out;
+  }
+  a:hover,
+  a:focus {
+    color: $soft-red;
+  }
+}

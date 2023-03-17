@@ -1,0 +1,8 @@
+.heading {
+  $heading-size: 1.5rem;
+  color: $white;
+  font-size: clamp(1rem, 3.191vw, 1.5rem);
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: clamp(.5rem, 1.595vw, .75rem);
+}

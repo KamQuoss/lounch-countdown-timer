@@ -1,0 +1,110 @@
+.flap-display {
+  $border-radius: 0.25rem;
+  width: 100%;
+  aspect-ratio: 1 / 1.05;
+  border-radius: $border-radius;
+  position: relative;
+  box-shadow: 0 2 * 0.25rem $black-blue;
+  &__parting {
+    position: absolute;
+    background-color: $black-blue;
+    height: 1px;
+    width: 100%;
+    top: 50%;
+    &::before,
+    &::after {
+      content: "";
+      height: 2 * $border-radius;
+      width: $border-radius;
+      border-bottom-right-radius: $border-radius;
+      border-top-right-radius: $border-radius;
+      border-left: 0px;
+      background-color: inherit;
+      position: absolute;
+      top: calc(50% - $border-radius);
+    }
+    &::after {
+      right: 0;
+      transform: rotate(180deg);
+    }
+  }
+  &__number {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $soft-red;
+    font-size: clamp(1.625rem, 10.628vw, 5rem);
+    border-radius: $border-radius;
+    background-color: $black-blue-desat;
+    overflow: hidden;
+    user-select: none;
+    animation-duration: 250ms;
+    animation-fill-mode: forwards;
+
+    &--top {
+      clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%);
+      filter: brightness(0.8);
+      &.even {
+        animation-name: flap-top-even;
+      }
+
+      &.odd {
+        animation-name: flap-top-odd;
+      }
+    }
+    &--bottom {
+      clip-path: polygon(0% 50%, 100% 50%, 100% 100%, 0% 100%);
+      &.even {
+        animation-name: flap-bottom-even;
+        animation-delay: 250ms;
+        animation-fill-mode: backwards;
+      }
+
+      &.odd {
+        animation-name: flap-bottom-odd;
+        animation-delay: 250ms;
+        animation-fill-mode: backwards;
+      }
+    }
+  }
+}
+
+@keyframes flap-top-even {
+  from {
+    filter: brightness(0.65);
+    transform: rotateX(0deg) perspective(300px);
+  }
+  to {
+    transform: rotateX(90deg) perspective(300px);
+  }
+}
+@keyframes flap-top-odd {
+  from {
+    filter: brightness(0.65);
+    transform: rotateX(0deg) perspective(300px);
+  }
+  to {
+    transform: rotateX(90deg) perspective(300px);
+  }
+}
+@keyframes flap-bottom-even {
+  from {
+    filter: brightness(0.45);
+    transform: rotateX(90deg) perspective(300px);
+  }
+  to {
+    transform: rotateX(0deg) perspective(300px);
+  }
+}
+@keyframes flap-bottom-odd {
+  from {
+    filter: brightness(0.45);
+    transform: rotateX(90deg);
+  }
+  to {
+    transform: rotateX(0deg);
+  }
+}
